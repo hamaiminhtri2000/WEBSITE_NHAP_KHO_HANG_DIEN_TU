@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hàng Điện Tử</title>
+    <link href="../static/bootstrap-4/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!--header-->
+    <div class="jumbotron" style="margin-bottom:0">
+        <a class="navbar-nav-brand" href="/">
+            <img src="../static/image/YT.png" alt="logo" style="height:90px">
+        </a>
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Trang Chủ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dangNhap">Đăng Nhập</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/dangKy">Đăng Ký</a>
+            </li>
+        </ul>
+    </nav>
+    <!--end header-->
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">
+            <strong>Cảnh Báo: </strong> [{{ message }}]
+        </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+    <!-- footer -->
+    <div class="jumbotron text-center" style="margin-top:0">
+        <p>Copyright @2021 by Hà Mai Minh Trí</p>
+    </div>
+    <!-- end footer -->
+</body>
+</html>

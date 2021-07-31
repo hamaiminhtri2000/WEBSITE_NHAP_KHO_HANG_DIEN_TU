@@ -1,0 +1,36 @@
+{% extends "userbase.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="jumptron text-center">
+            <h1>Chào Mừng {{ user.first_name }} {{ user.last_name }}</h1>
+        </div>
+
+        {% if user.hangs %}
+        <div class="jumptron">
+            <table class="table table-stripped table-bordered table-hover">
+                <thread>
+                    <tr>
+                        <th>Mã Sản Phẩm</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for h in user.hangs %}
+                    <tr>
+                        <td>{{h.hang_msp}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="jumptron text-center">
+                <div class="alert alert-warning text-center">
+                    <h4>Chưa có hàng hóa trong danh sách</h4>
+                </div>
+                <p class="lead"></p>
+                <p><a class="btn btn-lg btn-success" href="/themHang">Thêm Hàng</a></p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

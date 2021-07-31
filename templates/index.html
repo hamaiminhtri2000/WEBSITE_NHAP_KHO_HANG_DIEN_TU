@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <img src="../static/image/background.png" class="img-fluid" alt="Responsive image">
+        <div class="jumptron text-center" style="margin-top: -185px">
+            <h1>Chào Mừng Đến Với Kho Hàng Điện Tử</h1>
+            <p class="lead"></p>
+            <p><a class="btn btn-lg btn-success"" href="/dangKy">Đăng Ký</a></p>
+        </div>
+        <div class="row marketing">
+            {% for todoitem in todolist %}
+            <div class="col-sm-4">
+                <h4>{{ todoitem.ten }}</h4>
+                <p>{{ todoitem.noidung }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row marketing" style="margin-top: 10px">
+            <div class="product-device box-shadow d-none d-md-block"></div>
+            <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+        </div>
+{% endblock %}

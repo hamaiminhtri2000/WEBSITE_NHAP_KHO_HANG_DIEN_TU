@@ -1,0 +1,87 @@
+{% extends "userbase.html" %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            {% if product %}
+                <h1 class="h1">Mục Chỉnh Sửa Hàng</h1>
+            {% else %}
+                <h1 class="h1">Mục Thêm Hàng</h1>
+            {% endif %}
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
+            {% if product %}
+                <h1 class="h2">Chỉnh Sửa Danh Sách</h1>
+            {% else %}
+                <h1 class="h2">Thêm Hàng Vào Danh Sách</h1>
+            {% endif %}
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <a class="btn btn-sm btn-outline-secondary" style="height:31px" href="/productHome">
+                    {% if product %}
+                        <h1 class="h6">Hủy Chỉnh Sửa Hàng</h1>
+                    {% else %}
+                        <h1 class="h6">Hủy Thêm Hàng</h1>
+                    {% endif %}
+
+                    <span data-feather="corner-down-right"></span>
+                </a>
+            </div>
+        </div>
+        <div class="container" >
+            <form action="/addProduct" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                {% if product %}
+                    <input type="hidden" name="hiddenProductId" value="{{product.product_id}}">
+                {% else %}
+                    <input type="hidden" name="hiddenProductId" value="0">
+                {% endif %}
+                <div class="form-floating mb-3">
+                    {{form.inputProductName(class="form-control", id="floatingInputProductName", placeholder="Tên Sản Phẩm")}}
+                    {{form.inputProductName.label(class="sr-only", for="floatingInputProductName")}}
+                    {% if form.inputProductName.errors %}
+                        {% for error in form.inputProductName.errors %}
+                        <div class="mt-2" style="color: red;">
+                            <span data-feather="x"> </span>{{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.inputCategory(class="form-control", id="floatingInputCategory", placeholder="Mã Sản Phẩm")}}
+                    {{form.inputCategory.label(class="sr-only", for="floatingInputCategory")}}
+                    {% if form.inputCategory.errors %}
+                        {% for error in form.inputCategory.errors %}
+                        <div class="mt-2" style="color: red;">
+                            <span data-feather="x"> </span>{{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-floating mb-3">
+                    {{form.inputPrice(class="form-control", id="floatingInputPrice", placeholder="Đơn Giá")}}
+                    {{form.inputPrice.label(class="sr-only", for="floatingInputPrice")}}
+                    {% if form.inputPrice.errors %}
+                        {% for error in form.inputPrice.errors %}
+                        <div class="mt-2" style="color: red;">
+                            <span data-feather="x"> </span>{{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.inputDate(class="form-control", placeholder="Ngày Nhập") }}
+                    {% if form.inputDate.errors %}
+                        {% for error in form.inputDate.errors %}
+                        <div class="mt-2" style="color: red;">
+                            <span data-feather="x"> </span>{{error}}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                {{form.submit(class="btn btn-lg btn-success btn-block", style=" color:white; height: 50px",)}}
+            </form>
+        </div>
+        </div>
+    </div>
+{% endblock %}
